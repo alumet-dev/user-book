@@ -1,9 +1,9 @@
 # Introduction
 
-Welcome to the ALUMET user guide!
-If you want to measure something with ALUMET, you have come to the right place.
+Welcome to the Alumet user guide!
+If you want to measure something with Alumet, you have come to the right place.
 
-To skip the introduction and install ALUMET, [click here](installation/install.md).
+To skip the introduction and install Alumet, [click here](installation/install.md).
 
 ## What is ALUMET?
 
