@@ -61,7 +61,7 @@ cache_events = ["LL_READ_MISS"]
 
 # NOTE: for the moment, the perf plugin does not monitor the whole machine.
 # It provides the ability to monitor a specific process or cgroup, but this
-# ability needs to be explicitely turned on by another plugin.
+# ability needs to be explicitly turned on by another plugin.
 # The Alumet agent automatically does this when run with the `exec` command.
 ```
 
@@ -69,7 +69,7 @@ cache_events = ["LL_READ_MISS"]
 
 When you change the plugins that are included in the agent, or when you install a new version of Alumet,
 the configuration options may change. You can replace the existing configuration file by a fresh, updated
-version of the configurationby using the `regen-config` command.
+version of the configuration by using the `regen-config` command.
 
 Example:
 ```sh

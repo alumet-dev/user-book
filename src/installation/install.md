@@ -78,7 +78,7 @@ In any case, please **do not use `sudo cargo run`**, because that would compile 
 With the standard set of plugins, the measurements are saved in a CSV file.
 By default, this is `alumet-output.csv`. You can change this by editing `alumet-config.toml`. Note that the configuration file is automatically created by Alumet if it does not exist.
 
-[Learn more about Alumet's config here](./config.md).
+[Learn more about Alumet config here](./config.md).
 
 ## Enabling more plugins
 
