@@ -49,14 +49,15 @@ Commands:
   help          Print this message or the help of the given subcommand(s)
 
 Options:
-      --max-update-interval <MAX_UPDATE_INTERVAL>
-          Maximum amount of time between two updates of the sources' commands.
+      --config <CONFIG>
+          Path to the config file
           
-          A lower value means that the latency of source commands will be lower, i.e. commands will be applied faster, at the cost of a higher overhead.
-
-  -h, --help
-          Print help (see a summary with '-h')
+          [default: alumet-config.toml]
+          
+[...]
 ```
+
+I have omitted some lines here, run the command to discover the actual output :)
 
 To observe your machine, the simplest way is to use the `run` command.
 
@@ -64,7 +65,7 @@ To observe your machine, the simplest way is to use the `run` command.
 ../target/debug/alumet-local-agent
 ```
 
-Alumet will then start to observe your machine.
+Alumet will start to monitor various hardware and software components.
 
 ## Required privileges
 
