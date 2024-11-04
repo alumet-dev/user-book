@@ -2,9 +2,14 @@
 
 This repository contains the "Alumet user book", a guide for the users for the users of the measurement tool: system administrators, researchers or engineers who want to measure things, etc.
 
-The books is made with [mdBook](https://rust-lang.github.io/mdBook/).
+
+## Reading the book
+
+The book is available online (via GitHub pages) here: https://alumet-dev.github.io/user-book/
 
 ## Generating the book
+
+The book is made with [mdBook](https://rust-lang.github.io/mdBook/).
 
 First, you need to [install mdBook](https://rust-lang.github.io/mdBook/guide/installation.html#installation).
 
