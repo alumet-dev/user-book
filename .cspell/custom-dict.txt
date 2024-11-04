@@ -15,6 +15,7 @@ RAPL
 regen
 runnable
 rustc
+rustup
 sysfs
 toolchain
 UCUM

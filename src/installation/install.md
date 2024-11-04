@@ -10,7 +10,7 @@ We intend to provide easy-to-use packages in the future.
 
 ## Compiling from source
 
-**Prerequisite**: you need to [install the Rust toolchain](https://rustup.rs/).
+**Prerequisite**: A recent version of Rust is required (**at least 1.76** for now). You can run `rustc --version` to check your version. The easiest way to install a recent version of Rust is to use [rustup](https://rustup.rs/).
 
 Open a Terminal and download the repository:
 
