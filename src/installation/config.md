@@ -85,4 +85,4 @@ cargo run -- regen-config
 ## Command-line arguments
 
 Some command-line arguments override the options defined in the configuration file.
-This is the case of `--max_update_interval`, which overrides `max_update_interval` from the config file.
+This is the case of `--max-update-interval`, which overrides `max_update_interval` from the config file.
