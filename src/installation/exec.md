@@ -1,7 +1,6 @@
 # Execution mode
 
-When started with the `exec` command, the Alumet agent (built by the `app-agent` crate) spawns a new process
-with the specified command and stops when the process exits.
+When started with the `exec` command, the Alumet agent spawns a new process with the specified command and stops when the process exits.
 
 The execution mode automatically make some plugins, such as the `perf` plugin, gather more metrics about the spawned process.
 

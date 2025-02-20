@@ -58,11 +58,6 @@ software_events = []
 
 # List of cache perf_events to measure.
 cache_events = ["LL_READ_MISS"]
-
-# NOTE: for the moment, the perf plugin does not monitor the whole machine.
-# It provides the ability to monitor a specific process or cgroup, but this
-# ability needs to be explicitly turned on by another plugin.
-# The Alumet agent automatically does this when run with the `exec` command.
 ```
 
 ## Regenerating the file
@@ -73,13 +68,13 @@ version of the configuration by using the `regen-config` command.
 
 Example:
 ```sh
-alumet-agent regen-config
+alumet-agent config regen
 # Note: replace alumet-agent by the path to the binary application, or by `cargo run --`
 ```
 
 Example (if you use cargo run):
 ```sh
-cargo run -- regen-config
+cargo run -- config regen
 ```
 
 ## Command-line arguments
