@@ -64,7 +64,7 @@ cache_events = ["LL_READ_MISS"]
 
 When you change the plugins that are included in the agent, or when you install a new version of Alumet,
 the configuration options may change. You can replace the existing configuration file by a fresh, updated
-version of the configuration by using the `regen-config` command.
+version of the configuration by using the `config regen` command.
 
 Example:
 ```sh

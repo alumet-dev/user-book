@@ -1,16 +1,38 @@
 {
     "version": "0.2",
     "language": "en",
-    "dictionaries": ["custom-dict"],
+    "dictionaries": [
+        "custom-dict"
+    ],
     "dictionaryDefinitions": [
         {
             // The name of the dictionary is used to look it up.
             "name": "custom-dict",
-            // Path to the custom word file. Relative to this `cspell.json` file.
+            // Path to the custom word file. Relative to the root.
             "path": "../.cspell/custom-dict.txt",
             // Some editor extensions will use `addWords` for adding words to your
             // personal dictionary.
             "addWords": true
         }
-    ]
+    ],
+    "languageSettings": [
+        {
+            "languageId": "markdown",
+            "ignoreRegExpList": [
+                "markdown_code_block",
+                "markdown_inline_code"
+            ]
+        }
+    ],
+    "patterns": [
+        {
+            "name": "markdown_code_block",
+            "pattern": "```[\\s\\S]*?^\\s*```"
+        },
+        {
+            "name": "markdown_inline_code",
+            "pattern": "`.+`"
+        },
+    ],
+    "enabled": true
 }

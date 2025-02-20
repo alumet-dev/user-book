@@ -13,7 +13,7 @@
 - [How plugins work]()
 - [Measurement Sources]()
     - [RAPL energy consumption]()
-    - [NVIDIA GPUs (and Jetsons)]()
+    - [NVIDIA GPUs (and Jetson devices)]()
     - [perf_events]()
     - [Kubernetes pods]()
     - [HPC jobs on OAR]()
