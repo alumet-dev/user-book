@@ -24,6 +24,7 @@
   - [JSON file]()
   - [InfluxDB]()
   - [ElasticSearch / OpenSearch]()
+  - [OpenTelemetry](plugins/output/opentelemetry.md)
 
 # Community
 
