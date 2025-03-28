@@ -24,6 +24,7 @@
   - [JSON file]()
   - [InfluxDB]()
   - [ElasticSearch / OpenSearch]()
+  - [Prometheus Exporter](./plugins/outputs/prometheus.md)
 
 # Community
 
