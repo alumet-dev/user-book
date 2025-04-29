@@ -25,6 +25,7 @@
   - [InfluxDB]()
   - [ElasticSearch / OpenSearch]()
   - [Prometheus Exporter](./plugins/outputs/prometheus.md)
+  - [OpenTelemetry](plugins/output/opentelemetry.md)
 
 # Community
 
