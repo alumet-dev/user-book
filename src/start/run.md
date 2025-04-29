@@ -97,7 +97,7 @@ process_memory_kB      ; 2025-04-25T15:08:53.99636522Z ;       17372; local_mach
 
 The first line contains the name of the columns. Here is what they mean.
 
-- `metric`: the unique name of the metric that has been measured. With the default configuration of the `csv` plugin, the unit of the metric is appended to its name in the CSV. For instance, `process_cpu_time` is in milliseconds. Some metrics, such as `kernel_n_procs_running`, have no unit, they're numbers without a dimension.
+- `metric`: the unique name of the metric that has been measured. With the default configuration of the `csv` plugin, the unit of the metric is appended to its name in the CSV (see [Common plugin options](config.md#output-formatting-options)). For instance, `process_cpu_time` is in milliseconds. Some metrics, such as `kernel_n_procs_running`, have no unit, they're numbers without a dimension.
 - `timestamp`: when the measurement has been obtained. Timestamps are serialized as [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) date+time values with nanosecond resolution, in the UTC timezone (hence the `Z` at the end).
 - `value`: the value of the measurement. For instance, `kernel_n_procs_running` has a value of `6` at `2025-04-25T15:08:53.949919481`.
 - `resource_kind` and `resource_id` indicate the "resource" that this measurement is about. It's usually a piece of hardware. The special data `local_machine` (with an empty value for the resource id) means that this measurement is about the entire system. If a CPU-related plugin was enabled, it would have produced measurements with a resource kind of `cpu_package` and a resource id corresponding to that package.

@@ -3,7 +3,7 @@
 Welcome to the Alumet user guide!
 If you want to measure something with Alumet, you have come to the right place.
 
-To skip the introduction and install Alumet, [click here](installation/install.md).
+To skip the introduction and install Alumet, [click here](start/install.md).
 
 ## What is ALUMET?
 

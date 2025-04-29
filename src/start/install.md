@@ -7,9 +7,10 @@
 
 There are three main ways to install the standard Alumet agent[^agent-note]:
 
-1. 📦 Download [a pre-built package for the last stable release](#option-1-installing-with-a-pre-built-package). This is the simplest method.
-2. 🐳 Pull a [docker image for the last stable release](#option-2-installing-with-podmandocker).
-3. 🧑‍💻 Use `cargo` to [compile and install Alumet from source](#option-3-installing-from-source). This requires a Rust toolchain, but enables the use of the most recent version of the code without waiting for a new release.
+1. 📦 Download [a pre-built package](#option-1-installing-with-a-pre-built-package). This is the simplest method.
+2. 🐳 Pull a [docker image](#option-2-installing-with-podmandocker).
+3. 🔵 Deploy in a K8S cluster [with a helm chart](#option-3-installing-in-a-k8s-cluster-with-helm).
+4. 🧑‍💻 Use `cargo` to [compile and install Alumet from source](#option-4-installing-from-source). This requires a Rust toolchain, but enables the use of the most recent version of the code without waiting for a new release.
 
 [^agent-note]: See also [difference between Alumet core and Alumet agent](/plugins_core_agent.md).
 
@@ -79,7 +80,22 @@ podman run --cap-add=CAP_PERFMON,CAP_SYS_NICE ghcr.io/alumet-dev/alumet-agent
 Give it the permission to execute with `chmod +x $HOME/.local/bin/alumet-agent`, and voilà!
 You should now be able to run the `alumet-agent` command directly.
 
-## Option 3: Installing from source
+## Option 3: Installing in a K8S cluster with Helm
+
+To deploy Alumet in a Kubernetes cluster, you can use our [Helm](https://helm.sh/) chart to setup a database, an Alumet relay server, and multiple Alumet clients.
+Please refer to [Distributed deployment with the relay mode](relay.md) for more information.
+
+Quick install steps:
+
+```sh
+helm repo add alumet https://alumet-dev.github.io/helm-charts
+helm install alumet-distributed alumet/alumet
+```
+
+Here, `alumet-distributed` is the name of your Helm release, you can put the name you want, or use `--generate-name` to obtain a new, unique name.
+See the [Helm documentation](https://helm.sh/docs/intro/using_helm/).
+
+## Option 4: Installing from source
 
 **Prerequisite**: you need to [install the Rust toolchain](https://rustup.rs/).
 
