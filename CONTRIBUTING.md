@@ -1,3 +1,4 @@
+<!-- markdownlint-disable MD029 -->
 # Contributing Guide
 
 Here are more information that you will probably need to work on the book itself.

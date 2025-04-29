@@ -35,7 +35,7 @@ We intend to provide even more packages in the future.
 The packages that contain the Alumet agent have very few dependencies, therefore an older package should work fine on a newer system.
 For example, if you have Ubuntu 25.04, it's fine to download and install the package for Ubuntu 24.04.
 
-To simplify maintainance, we don't release one package for each OS version, but we focus on LTS ones.
+To simplify maintenance, we don't release one package for each OS version, but we focus on LTS ones.
 
 ### My OS is not supported, what do I do?
 
@@ -116,7 +116,7 @@ For more information on how to help us with this ambitious project, refer to the
 Because Alumet has low-level interactions with the system, it requires some privileges.
 The packages take care of this setup, but with a container image, you need to grant these capabilities manually.
 
-The easiest way to do is is to use setcap as `root` before running Alumet:
+The easiest way to do is is to use `setcap` as `root` before running Alumet:
 
 ```sh
 sudo setcap 'cap_perfmon=ep cap_sys_nice=ep' ~/.cargo/bin/alumet-agent
@@ -125,7 +125,7 @@ sudo setcap 'cap_perfmon=ep cap_sys_nice=ep' ~/.cargo/bin/alumet-agent
 This grants the capabilities to the binary file `~/.cargo/bin/alumet-agent`.
 You will then be able to run the agent directly.
 
-Alternatively, you can also run the Alumet agent without doing setcap, and it will tell you what to do, depending on the plugins that you have enabled.
+Alternatively, you can also run the Alumet agent without doing `setcap`, and it will tell you what to do, depending on the plugins that you have enabled.
 
 NOTE: running Alumet as root also works, but is not recommended.
 A good practice regarding security is to grant the _least_ amount of privileges required.
