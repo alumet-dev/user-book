@@ -1,7 +1,7 @@
 <!-- markdownlint-disable first-line-h1 no-empty-links -->
 [Introduction](intro.md)
 [Why Alumet and not \<X\>?](why_alumet.md)
-[Alumet plugins, core, agent]()
+[Alumet plugins, core, agent](plugins_core_agent.md)
 
 # Installation and Configuration
 
