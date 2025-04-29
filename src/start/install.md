@@ -7,9 +7,9 @@
 
 There are three main ways to install the standard Alumet agent[^agent-note]:
 
-1. 📦 Download [a pre-built package for the last stable release](#installing-with-a-pre-built-package). This is the simplest method.
-2. 🐳 Pull a [docker image for the last stable release](#installing-with-docker).
-3. 🧑‍💻 Use `cargo` to [compile and install Alumet from source](#installing-from-source). This requires a Rust toolchain, but enables the use of the most recent version of the code without waiting for a new release.
+1. 📦 Download [a pre-built package for the last stable release](#option-1-installing-with-a-pre-built-package). This is the simplest method.
+2. 🐳 Pull a [docker image for the last stable release](#option-2-installing-with-podmandocker).
+3. 🧑‍💻 Use `cargo` to [compile and install Alumet from source](#option-3-installing-from-source). This requires a Rust toolchain, but enables the use of the most recent version of the code without waiting for a new release.
 
 [^agent-note]: See also [difference between Alumet core and Alumet agent](/plugins_core_agent.md).
 

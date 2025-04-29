@@ -81,8 +81,8 @@ Here is an example with the `rapl` plugin, which provide one measurement source:
 # Most plugins that provide measurement sources also provide this configuration option.
 poll_interval = "1s"
 
-# Measurements are kept in a buffer and are only sent to the next step of the Alumet pipeline
-# when the flush interval expires.
+# Measurements are kept in a buffer and are only sent to the next step of the Alumet
+# pipeline when the flush interval expires.
 flush_interval = "5s"
 
 # Another option (specific to the RAPL plugin, included for exhaustivity purposes)
@@ -98,3 +98,22 @@ Here are some options that are quite common among output plugins:
 - `append_unit_to_metric_name` (boolean): If set to `true`, append the unit of the metric to its name.
 - `use_unit_display_name` (boolean): If set to `true`, use the human-readable display name of the metric unit when appending it to its name. If set to `false`, use the machine-readable ASCII name of the unit. This distinction is based on the [Unified Code for Units of Measure](https://ucum.org/), aka UCUM. This setting does nothing if `append_unit_to_metric_name` is `false`.
   - Example: the human-readable _display name_ of the "microsecond" unit is `µs`, while its machine-readable _unique name_ is `us`.
+
+Here is an example with the `csv` plugin, which exports measurements to a local CSV file.
+
+```toml
+[plugins.csv]
+# csv-specific: path to the CSV file
+output_path = "alumet-output.csv"
+
+# csv-specific: always flush the buffer after each operation
+# (this makes the data visible in the file with less delay)
+force_flush = true
+
+# Common options, described above
+append_unit_to_metric_name = true
+use_unit_display_name = true
+
+# csv-specific: column delimited
+csv_delimiter = ";"
+```
