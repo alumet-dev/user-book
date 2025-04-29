@@ -13,7 +13,7 @@ There are three main ways to install the standard Alumet agent[^agent-note]:
 
 [^agent-note]: See also [difference between Alumet core and Alumet agent](/plugins_core_agent.md).
 
-## Installing with a pre-built package
+## Option 1: Installing with a pre-built package
 
 [Go to the latest release](https://github.com/alumet-dev/alumet/releases/latest) on Alumet's GitHub page.
 In the _Assets_ section, find the package that corresponds to your system.
@@ -43,12 +43,43 @@ Use another installation method (see below).
 
 Alumet core is OS-agnostic, but the standard Alumet agent does not support Windows nor macOS yet[^agent-note].
 
-## Installing with Docker
+## Option 2: Installing with Podman/Docker
 
 Every release is published to the container registry of the `alumet-dev` organization.
-Go to the [`alumet-agent` image page](https://github.com/alumet-dev/alumet/pkgs/container/alumet-agent) to pull the docker image.
 
-## Installing from source
+Pull the latest image with the following command (replace `podman` with `docker` if you use docker):
+
+```sh
+podman pull ghcr.io/alumet-dev/alumet-agent
+```
+
+View more variants of the container image on the [`alumet-agent` image page](https://github.com/alumet-dev/alumet/pkgs/container/alumet-agent).
+
+### Privileges required when running
+
+Because Alumet has low-level interactions with the system, it requires some privileges.
+The packages take care of this setup, but with a container image, you need to grant these capabilities manually.
+
+To run `alumet-agent`, you need to execute (again, replace `podman` with `docker` if you use docker):
+
+```sh
+podman run --cap-add=CAP_PERFMON,CAP_SYS_NICE ghcr.io/alumet-dev/alumet-agent
+```
+
+### Launcher script (optional)
+
+Let's simplify your work and make a shortcut: create a file `alumet-agent` somewhere.
+We recommend `$HOME/.local/bin/` (make sure that it is in your path).
+
+```sh
+#!/usr/bin/bash
+podman run --cap-add=CAP_PERFMON,CAP_SYS_NICE ghcr.io/alumet-dev/alumet-agent
+```
+
+Give it the permission to execute with `chmod +x $HOME/.local/bin/alumet-agent`, and voilà!
+You should now be able to run the `alumet-agent` command directly.
+
+## Option 3: Installing from source
 
 **Prerequisite**: you need to [install the Rust toolchain](https://rustup.rs/).
 
@@ -63,6 +94,25 @@ Make sure to add it to your `PATH`.
 
 To debug Alumet more easily, compile the agent in debug mode by adding the `--debug` flag (performance will decrease and memory usage will increase).
 For more information on how to help us with this ambitious project, refer to the [Alumet Developer Book](https://alumet-dev.github.io/developer-book/).
+
+### Privileges required
+
+Because Alumet has low-level interactions with the system, it requires some privileges.
+The packages take care of this setup, but with a container image, you need to grant these capabilities manually.
+
+The easiest way to do is is to use setcap as `root` before running Alumet:
+
+```sh
+sudo setcap 'cap_perfmon=ep cap_sys_nice=ep' ~/.cargo/bin/alumet-agent
+```
+
+This grants the capabilities to the binary file `~/.cargo/bin/alumet-agent`.
+You will then be able to run the agent directly.
+
+Alternatively, you can also run the Alumet agent without doing setcap, and it will tell you what to do, depending on the plugins that you have enabled.
+
+NOTE: running Alumet as root also works, but is not recommended.
+A good practice regarding security is to grant the _least_ amount of privileges required.
 
 ## Post-install steps
 
