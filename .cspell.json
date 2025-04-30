@@ -13,7 +13,8 @@
         ".gitignore",
         ".github/",
         "*.svg",
-        ".circleci/"
+        ".circleci/",
+        "theme/*"
     ],
     "dictionaryDefinitions": [
         {
@@ -27,7 +28,8 @@
             "languageId": "markdown",
             "ignoreRegExpList": [
                 "markdown_code_block",
-                "markdown_inline_code"
+                "markdown_inline_code",
+                "name_surname"
             ]
         }
     ],
@@ -39,6 +41,10 @@
         {
             "name": "markdown_inline_code",
             "pattern": "`.+`"
+        },
+        {
+            "name": "name_surname",
+            "pattern": "[A-Z]\\w+ [A-Z]\\w+"
         }
     ],
     "enabled": true

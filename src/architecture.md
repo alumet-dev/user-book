@@ -1,1 +1,0 @@
-# ALUMET architecture

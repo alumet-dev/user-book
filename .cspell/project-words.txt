@@ -6,5 +6,10 @@ RAPL
 rustup
 libc
 Jetson
-Prepper
 downsampling
+mdbook
+pagetoc
+slurm
+oar
+nvml
+powermeters

@@ -29,7 +29,7 @@ The plugin has been tested on both, local environment using docker-compose.yaml 
 
 [OpenSearch](https://opensearch.org/docs/latest/getting-started/intro/) is a distributed search and analytics engine that can be used as vector database, full-text search and observability backend for logs, metrics and traces.
 
-The connection to OpenSearch was done following the [official Data Prepper tutorial](https://github.com/opensearch-project/data-prepper/tree/main/examples/metrics-ingestion-OTEL) which is a recommended ingestion pipeline tool which can be connected to OTEL as recommended [here](https://opensearch.org/blog/distributed-tracing-pipeline-with-opentelemetry/).
+The connection to OpenSearch was done following the [official Data Prepper tutorial](https://github.com/opensearch-project/data-prepper/tree/main/examples/metrics-ingestion-OTEL) which is an additional tool that translates OTEL protocol to OpenSearch protocol, as described [here](https://opensearch.org/blog/distributed-tracing-pipeline-with-opentelemetry/).
 
 Notes:
 - For clarity, I disconnected traces and metrics from other sources to better visualize in OpenSearch what comes from alumet.
@@ -129,7 +129,3 @@ collectors:
             exporters: 
               - prometheusremotewrite
 ```
-
-### Others
-
-- ElasticSearch natively supports the OpenTelemetry protocol and can be integrated to an OTEL collector via the APM, refer to the [official documentation](https://www.elastic.co/guide/en/observability/current/apm-open-telemetry.html) for an example.

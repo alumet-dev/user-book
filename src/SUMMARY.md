@@ -1,31 +1,45 @@
 <!-- markdownlint-disable first-line-h1 no-empty-links -->
 [Introduction](intro.md)
-[Why ALUMET and not \<X\>?](why_alumet.md)
+[Alumet core, plugins, agent](plugins_core_agent.md)
 
 # Installation and Configuration
 
-- [Installing Alumet](installation/install.md)
-- [Configuration file](installation/config.md)
-- ["Execution" mode](installation/exec.md)
-- [HPC "relay" mode]()
+- [Installing Alumet](start/install.md)
+- [Running Alumet](start/run.md)
+- [Configuration file](start/config.md)
+- [Distributed measurement with the "relay" mode]()
+
+# Tutorials for common use cases
+
+- [Measuring the energy consumption of an AI model training]()
+- [Monitoring an entire system]()
 
 # Plugins reference
 
-- [How plugins work]()
 - [Measurement Sources]()
-  - [RAPL energy consumption]()
-  - [NVIDIA GPUs (and Jetson devices)]()
-  - [perf_events]()
-  - [Kubernetes pods]()
-  - [HPC jobs on OAR]()
+  - [procfs: Linux system and process information]()
+  - [rapl: x86 CPU energy consumption]()
+  - [nvml: dedicated NVIDIA GPUs]()
+  - [jetson: NVIDIA Jetson edge devices]()
+  - [Integration with HPC batch schedulers]()
+    - [oar3: measure OAR3 jobs]()
+    - [oar2: measure OAR2 jobs]()
+    - [slurm: measure Slurm jobs]()
+  - [k8s: measure Kubernetes pods]()
 - [Data Transforms]()
+  - [aggregation: aggregate data]()
+  - [energy-attribution: attribute the energy consumed by the hardware to the software]()
+  - [energy-estimation-tdp: estimate the energy consumption when it cannot be measured]()
 - [Measurement Outputs]()
-  - [CSV file]()
-  - [JSON file]()
+  - [CSV files]()
   - [InfluxDB]()
+  - [MongoDB]()
   - [ElasticSearch / OpenSearch]()
-  - [Prometheus Exporter](./plugins/outputs/prometheus.md)
   - [OpenTelemetry](plugins/output/opentelemetry.md)
+  - [Prometheus](plugins/output/prometheus.md)
+- [Special plugins]()
+  - [Relay client and server]()
+  - [socket-control]()
 
 # Community
 
