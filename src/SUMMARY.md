@@ -1,6 +1,6 @@
 <!-- markdownlint-disable first-line-h1 no-empty-links -->
 [Introduction](intro.md)
-[Alumet plugins, core, agent](plugins_core_agent.md)
+[Alumet core, plugins, agent](plugins_core_agent.md)
 
 # Installation and Configuration
 

@@ -1,7 +1,7 @@
 # Configuration file
 
 Alumet and its plugins can be configured by modifying a [TOML](https://toml.io/en/) file.
-If you don't know TOML, it's a configuration format that aims to be "a config file for human", easy to read and to modify.
+If you don't know TOML, it's a configuration format that aims to be "a config file for humans", easy to read and to modify.
 
 ## Where is the configuration file?
 
