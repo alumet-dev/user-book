@@ -41,6 +41,7 @@ To simplify maintenance, we don't release one package for each OS version, but w
 
 Alumet should work fine on nearly all Linux distributions, but we do not provide packages for every single one of them.
 Use another installation method (see below).
+For instance, if you are using Ubuntu on ARM devices (for example Jetson edge devices), you should [compile the agent from source](#option-4-installing-from-source).
 
 Alumet core is OS-agnostic, but the standard Alumet agent does not support Windows nor macOS yet[^agent-note].
 
