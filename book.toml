@@ -1,7 +1,6 @@
 [book]
-authors = []
+authors = ["Alumet contributors"]
 language = "en"
-multilingual = false
 src = "src"
 title = "ALUMET user guide"
 

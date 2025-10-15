@@ -8,6 +8,11 @@ Here are more information that you will probably need to work on the book itself
 See the [mdBook documentation](https://rust-lang.github.io/mdBook/format/theme/index.html).
 
 1. Regenerate the `theme` folder with default mdbook files. This allows the theme to be updated to the current version of mdbook.
+
+```sh
+mdbook init --theme
+```
+
 2. Cancel (with git) the modifications of `book.toml`
 3. Remove all theme files except `index.hbs`
 
@@ -30,7 +35,8 @@ rmdir ./theme/fonts ./theme/css
 ```
 
 5. Put additional files in `theme`, e.g. `pagetoc.css` and `pagetoc.html` ([mdBook-pagetoc](https://github.com/JorelAli/mdBook-pagetoc/tree/master/theme)).
-Update `book.toml` accordingly:
+
+6. Update `book.toml` accordingly:
 
 ```diff
 +[output.html]
