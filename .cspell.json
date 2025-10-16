@@ -5,21 +5,28 @@
     "enableGlobDot": true,
     "language": "en",
     "dictionaries": [
-        "project-words"
+        "project-words",
+        "grid5000",
     ],
     "ignorePaths": [
         "*.toml",
-        ".git/*",
+        ".git/",
         ".gitignore",
         ".github/",
         "*.svg",
         ".circleci/",
-        "theme/*"
+        "theme/",
+        "addons/",
     ],
     "dictionaryDefinitions": [
         {
             "name": "project-words",
             "path": ".cspell/project-words.txt",
+            "addWords": true
+        },
+        {
+            "name": "grid5000",
+            "path": ".cspell/grid5000.txt",
             "addWords": true
         }
     ],
@@ -29,7 +36,8 @@
             "ignoreRegExpList": [
                 "markdown_code_block",
                 "markdown_inline_code",
-                "name_surname"
+                "name_surname",
+                "math_equation_latex",
             ]
         }
     ],
@@ -45,6 +53,10 @@
         {
             "name": "name_surname",
             "pattern": "[A-Z]\\w+ [A-Z]\\w+"
+        },
+        {
+            "name": "math_equation_latex",
+            "pattern": "\\$\\$.+\\$\\$"
         }
     ],
     "enabled": true

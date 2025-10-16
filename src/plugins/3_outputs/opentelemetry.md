@@ -1,24 +1,33 @@
-# OpenTelemetry Output Plugin
-
-## Description
+# OpenTelemetry plugin
 
 [OpenTelemetry](https://opentelemetry.io/docs/what-is-opentelemetry/) (OTEL) is an open source observability framework and toolset designed to ease the integration of observability backends such as Jaeger, Prometheus, Elasticsearch, OpenSearch and more. While it offers vendor/tool-agnostic and auto-instrumentation capabilities, the backend (storage) and the frontend (visualization) of telemetry data are intentionally left to other tools.
 
-The plugin developed is an exporter (push) which can be connected to the OTEL framework via a receiver.
+The `opentelemetry` plugin for Alumet is a push-based exporter (via gRPC), which can be connected to an OpenTelemetry Collector (via a receiver), processed in any way, and then exported to a observability backend like Jaeger, Prometheus, Thanos, OpenSearch, ElasticSearch, etc.
+
+## Requirements
+
+You need to have an OTEL Collector reachable.
 
 ## Configuration
 
-The plugin can be configured via the alumet's config.toml file with the following options:
+Here is an example of how to configure this plugin.
+Put the following in the configuration file of the Alumet agent (usually `alumet-config.toml`).
 
 ```toml
 [plugins.opentelemetry]
+# Where to send the data 
 collector_host = "http://localhost:4317"
+# How often to send the data
+push_interval_seconds = 15
+
+# Which metric name to use when sending the data.
+# You can prepend a prefix and append a suffix to the name of Alumet metrics.
 prefix = ""
 suffix = "_alumet"
-append_unit_to_metric_name = true
+# Use the display name of the units instead of their unique name, as specified by the UCUM.
+# See https://ucum.org/ucum for a list of unit and their symbols.
 use_unit_display_name = true
 add_attributes_to_labels = true
-push_interval_seconds = 15
 ```
 
 ## Examples
@@ -29,7 +38,7 @@ The plugin has been tested on both, local environment using docker-compose.yaml 
 
 [OpenSearch](https://opensearch.org/docs/latest/getting-started/intro/) is a distributed search and analytics engine that can be used as vector database, full-text search and observability backend for logs, metrics and traces.
 
-The connection to OpenSearch was done following the [official Data Prepper tutorial](https://github.com/opensearch-project/data-prepper/tree/main/examples/metrics-ingestion-OTEL) which is an additional tool that translates OTEL protocol to OpenSearch protocol, as described [here](https://opensearch.org/blog/distributed-tracing-pipeline-with-opentelemetry/).
+The connection to OpenSearch was done following the [official Data Prepper tutorial](https://github.com/opensearch-project/data-prepper/tree/main/examples/metrics-ingestion-OTEL) which is an additional tool that translates OTEL protocol to OpenSearch protocol, as described [on the OpenSearch blog](https://opensearch.org/blog/distributed-tracing-pipeline-with-opentelemetry/).
 
 Notes:
 - For clarity, I disconnected traces and metrics from other sources to better visualize in OpenSearch what comes from alumet.
@@ -63,7 +72,7 @@ exporters:
 
 Alumet was left with the default configuration and resulted in the correct population of the OpenSearch database and ability to explore the data via the dashboards as shown in the figure below.
 
-![demo](../../images/opentelemetry-opensearch-demo.png)
+![demo](../../images/plugins/opentelemetry-opensearch-demo.png)
 
 ### Thanos K8s example
 
@@ -129,3 +138,7 @@ collectors:
             exporters: 
               - prometheusremotewrite
 ```
+
+With this setup, we can see the real-time measurements made by Alumet in Thanos:
+
+![demo](../../images/plugins/opentelemetry-thanos-demo.png)
