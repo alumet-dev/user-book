@@ -19,9 +19,9 @@ Depending on the hardware, some metrics may or may not be collected.
 
 |Name|Type|Unit|Description|Attributes|
 |----|----|----|-----------|----------|
-|`input_current`| u64 | mA (milli-Ampere) | current intensity on the channel's line | see below |
-|`input_voltage`| u64 | mV (milli-Volt)| current voltage on the channel's line    | see below |
-|`input_power`  | u64 | mW (milli-Watt)| instantaneous electrical power on the channel's line    | see below |
+|`input_current`| u64 | mA (milliAmpere) | current intensity on the channel's line | see below |
+|`input_voltage`| u64 | mV (milliVolt)| current voltage on the channel's line    | see below |
+|`input_power`  | u64 | mW (milliWatt)| instantaneous electrical power on the channel's line    | see below |
 
 ### Attributes
 

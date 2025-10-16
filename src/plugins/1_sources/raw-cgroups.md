@@ -43,7 +43,7 @@ poll_interval = "1s"
 The version of the control groups and the mount point of the cgroupfs are automatically detected.
 
 The plugin watches for the creation and deletion of cgroups.
-With cgroup v2, the detection is almost instantaneous, because it relies on inotify.
+With cgroup v2, the detection is almost instantaneous, because it relies on `inotify`.
 With cgroup v1, however, cgroups are repeatedly polled. The refresh interval is `30s`, and it is currently not possible to change it in the plugin's configuration.
 
 ## More information
