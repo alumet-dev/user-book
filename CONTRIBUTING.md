@@ -3,6 +3,36 @@
 
 Here are more information that you will probably need to work on the book itself.
 
+## How to synchronize the plugins docs with their READMEs
+
+The script `copy_plugins_readme.py` can copy the plugins' README, found in the repository that contains their source code (`alumet-dev/alumet`), to the user book repository (this one).
+
+Usage:
+
+```sh
+./copy_plugins_readmes.py ALUMET_REPO_PATH [PLUGIN_NAME]
+```
+
+To copy all the readmes (assuming that `alumet` and `user-book` have been cloned in the same parent directory):
+
+```sh
+./copy_plugins_readmes.py ../alumet
+```
+
+To copy one readme, for instance for plugin `rapl`:
+
+```sh
+./copy_plugins_readmes.py ../alumet rapl
+```
+
+The script will:
+1. Find the `README.md` of each plugin.
+2. Find the corresponding `.md` file in the sources of the user book.
+3. Overwrite the user book doc with the content of the readme or, if there is no existing documentation in the user book, create a new `.md` file in the `plugins/` directory.
+
+**You** should review the changes and make some adjustements, such as adding screenshots, explaining new concepts, moving the new `.md` files to the right section, etc.
+In the case of a new plugin, don't forget to update `SUMMARY.md`.
+
 ## How to modify/update the mdBook theme
 
 See the [mdBook documentation](https://rust-lang.github.io/mdBook/format/theme/index.html).
