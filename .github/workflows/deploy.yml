@@ -19,9 +19,15 @@ jobs:
         run: |
           tag='v0.4.52'
           url="https://github.com/rust-lang/mdbook/releases/download/${tag}/mdbook-${tag}-x86_64-unknown-linux-gnu.tar.gz"
-          mkdir mdbook
-          curl -sSL $url | tar -xz --directory=./mdbook
-          echo `pwd`/mdbook >> $GITHUB_PATH
+          mkdir bin
+          curl -sSL "$url" | tar -xz --directory=./bin
+          echo "$(pwd)/bin" >> $GITHUB_PATH
+      - name: Install mdbook-mermaid
+        run: |
+          tag='v0.15.0'
+          url="https://github.com/badboy/mdbook-mermaid/releases/download/${tag}/mdbook-mermaid-${tag}-x86_64-unknown-linux-musl.tar.gz"
+          curl -sSL "$url" | tar -xz --directory=./bin
+          mdbook-mermaid --version
       - name: Build Book
         run: |
           # This assumes your book is in the root of your repository.

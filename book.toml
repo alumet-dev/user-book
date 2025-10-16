@@ -5,5 +5,8 @@ src = "src"
 title = "ALUMET user guide"
 
 [output.html]
-additional-css = ["theme/pagetoc.css"]
-additional-js = ["theme/pagetoc.js"]
+additional-css = ["addons/pagetoc.css"]
+additional-js = ["addons/pagetoc.js", "addons/mermaid.min.js", "addons/mermaid-init.js"]
+
+[preprocessor.mermaid]
+command = "mdbook-mermaid"

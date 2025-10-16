@@ -64,12 +64,25 @@ rmdir ./theme/fonts ./theme/css
 </main>
 ```
 
-5. Put additional files in `theme`, e.g. `pagetoc.css` and `pagetoc.html` ([mdBook-pagetoc](https://github.com/JorelAli/mdBook-pagetoc/tree/master/theme)).
+5. Update the `pagetoc` addon (see the relevant section)
 
-6. Update `book.toml` accordingly:
+## How to update add-ons
 
-```diff
-+[output.html]
-+additional-css = ["theme/pagetoc.css"]
-+additional-js = ["theme/pagetoc.js"]
-```
+The `addons` folder contains assets used by external preprocessors or other tools that add features to mdBook.
+
+## Pagetoc
+
+[`mdbook-pagetoc`](https://github.com/JorelAli/mdBook-pagetoc) provides page-level table of content with JS.
+
+To update:
+1. Download the [files from the repository](https://github.com/JorelAli/mdBook-pagetoc/tree/master/theme).
+2. Replace `pagetoc.css` and `pagetoc.js` in `addons/`.
+
+## Mermaid
+
+[`mdbook-mermaid`](https://github.com/badboy/mdbook-mermaid) is a preprocessor that adds support for `mermaid.js` diagrams.
+
+To update:
+1. Download the new assets or obtain them by running `mdbook-mermaid install $(pwd)`.
+2. Put the new assets in `addons/`.
+3. Update the version of `mdbook-mermaid` that is used in the `deploy` workflow, by modifying [`deploy.yml`](.github/workflows/deploy.yml).
