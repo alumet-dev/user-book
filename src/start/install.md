@@ -28,11 +28,13 @@ sudo apt install ./alumet-agent*amd64_ubuntu_22.04.deb
 ```
 
 You can also use the following install script to get the latest version released:
+
 ```sh
 curl -sSfL https://github.com/alumet-dev/alumet/raw/refs/heads/main/install.sh | sh 
 ```
 
 Or if you want a specific version (for example here v0.9.2):
+
 ```sh
 curl -sSfL https://github.com/alumet-dev/alumet/raw/refs/heads/main/install.sh | sh -s -- -t v0.9.2
 ```
