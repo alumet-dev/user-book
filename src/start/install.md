@@ -7,14 +7,29 @@
 
 There are three main ways to install the standard Alumet agent[^agent-note]:
 
-1. 📦 Download [a pre-built package](#option-1-installing-with-a-pre-built-package). This is the simplest method.
-2. 🐳 Pull a [docker image](#option-2-installing-with-podmandocker).
-3. 🔵 Deploy in a K8S cluster [with a helm chart](#option-3-installing-in-a-k8s-cluster-with-helm).
-4. 🧑‍💻 Use `cargo` to [compile and install Alumet from source](#option-4-installing-from-source). This requires a Rust toolchain, but enables the use of the most recent version of the code without waiting for a new release.
+1. 🌐 Download using our [install script](#option-1-installing-with-the-install-script). This is the simplest method.
+2. 📦 Download [a pre-built package](#option-2-installing-with-a-pre-built-package).
+3. 🐳 Pull a [docker image](#option-3-installing-with-podmandocker).
+4. 🔵 Deploy in a K8S cluster [with a helm chart](#option-4-installing-in-a-k8s-cluster-with-helm).
+5. 🧑‍💻 Use `cargo` to [compile and install Alumet from source](#option-5-installing-from-source). This requires a Rust toolchain, but enables the use of the most recent version of the code without waiting for a new release.
 
 [^agent-note]: See also [difference between Alumet core and Alumet agent](/plugins_core_agent.md).
 
-## Option 1: Installing with a pre-built package
+## Option 1: Installing with the install script
+
+You can use the following install script to get the latest version released:
+
+```sh
+curl -sSfL https://github.com/alumet-dev/alumet/raw/refs/heads/main/install.sh | sh 
+```
+
+Or if you want a specific version of Alumet (for example here v0.9.2):
+
+```sh
+curl -sSfL https://github.com/alumet-dev/alumet/raw/refs/heads/main/install.sh | sh -s -- -r v0.9.2
+```
+
+## Option 2: Installing with a pre-built package
 
 [Go to the latest release](https://github.com/alumet-dev/alumet/releases/latest) on Alumet's GitHub page.
 In the _Assets_ section, find the package that corresponds to your system.
@@ -41,11 +56,11 @@ To simplify maintenance, we don't release one package for each OS version, but w
 
 Alumet should work fine on nearly all Linux distributions, but we do not provide packages for every single one of them.
 Use another installation method (see below).
-For instance, if you are using Ubuntu on ARM devices (for example Jetson edge devices), you should [compile the agent from source](#option-4-installing-from-source).
+For instance, if you are using Ubuntu on ARM devices (for example Jetson edge devices), you should [compile the agent from source](#option-5-installing-from-source).
 
 Alumet core is OS-agnostic, but the standard Alumet agent does not support Windows nor macOS yet[^agent-note].
 
-## Option 2: Installing with Podman/Docker
+## Option 3: Installing with Podman/Docker
 
 Every release is published to the container registry of the `alumet-dev` organization.
 
@@ -81,7 +96,7 @@ podman run --cap-add=CAP_PERFMON,CAP_SYS_NICE ghcr.io/alumet-dev/alumet-agent
 Give it the permission to execute with `chmod +x $HOME/.local/bin/alumet-agent`, and voilà!
 You should now be able to run the `alumet-agent` command directly.
 
-## Option 3: Installing in a K8S cluster with Helm
+## Option 4: Installing in a K8S cluster with Helm
 
 To deploy Alumet in a Kubernetes cluster, you can use our [Helm](https://helm.sh/) chart to setup a database, an Alumet relay server, and multiple Alumet clients.
 Please refer to [Distributed deployment with the relay mode](relay.md) for more information.
@@ -96,7 +111,7 @@ helm install alumet-distributed alumet/alumet
 Here, `alumet-distributed` is the name of your Helm release, you can put the name you want, or use `--generate-name` to obtain a new, unique name.
 See the [Helm documentation](https://helm.sh/docs/intro/using_helm/).
 
-## Option 4: Installing from source
+## Option 5: Installing from source
 
 **Prerequisite**: you need to [install the Rust toolchain](https://rustup.rs/).
 
