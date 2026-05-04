@@ -17,6 +17,7 @@
 # Plugins reference
 
 - [Measurement Sources](plugins/1_sources/_intro.md)
+  - [amd-gpu: dedicated AMD GPUs](plugins/1_sources/amd-gpu.md)
   - [grace-hopper: Grace and Grace Hopper superchips](plugins/1_sources/grace-hopper.md)
   - [nvidia-jetson: NVIDIA Jetson edge devices](plugins/1_sources/nvidia-jetson.md)
   - [nvidia-nvml: dedicated NVIDIA GPUs](plugins/1_sources/nvidia-nvml.md)
