@@ -19,12 +19,12 @@ One source will be created per GPU device.
 |`nvml_instant_power`|Gauge|milliWatt|Instant power consumption|GPU|LocalMachine||
 |`nvml_temperature_gpu`|Gauge|Celsius|Main temperature emitted by a given device|GPU|LocalMachine||
 |`nvml_gpu_utilization`|Gauge|Percentage (0-100)|GPU rate utilization|GPU|LocalMachine||
-|`nvml_gpu_memory_allocation`|Gauge|bytes|GPU VRAM allocation|GPU|LocalMachine|[kind](#kind)|
+|`nvml_gpu_memory_info`|Gauge|bytes|GPU VRAM information. Only available with recent versions of NVIDIA drivers ($\geq510$)|GPU|LocalMachine|[kind](#kind)|
 |`nvml_encoder_sampling_period`|Gauge|Microsecond|Current utilization and sampling size for the encoder|GPU|LocalMachine||
 |`nvml_decoder_sampling_period`|Gauge|Microsecond|Current utilization and sampling size for the decoder|GPU|LocalMachine||
 |`nvml_n_compute_processes`|Gauge|None|Relevant currently running computing processes data|GPU|LocalMachine||
 |`nvml_n_graphic_processes`|Gauge|None|Relevant currently running graphical processes data|GPU|LocalMachine||
-|`nvml_memory_utilization`|Gauge|Percentage|GPU memory utilization by a process. According to [NVIDIA documentation](https://docs.nvidia.com/deploy/nvml-api/structnvmlUtilization__t.html#structnvmlUtilization__t) :"Percent of time over the past sample period during which global (device) memory was being read or written." |Process|LocalMachine||
+|`nvml_memory_utilization`|Gauge|Percentage|GPU memory utilization by a process|Process|LocalMachine||
 |`nvml_encoder_utilization`|Gauge|Percentage|GPU video encoder utilization by a process|Process|LocalMachine||
 |`nvml_decoder_utilization`|Gauge|Percentage|GPU video decoder utilization by a process|Process|LocalMachine||
 |`nvml_sm_utilization`|Gauge|Percentage|Utilization of the GPU streaming multiprocessors by a process (3D task and rendering, etc...)|Process|LocalMachine||
@@ -36,16 +36,13 @@ Some metrics can be disabled, see the `mode` configuration option.
 #### Kind
 
 The kind of the memory is the type of the allocated memory space reserved by the system or the hardware.
-Depending on the the version of the version of your NVIDIA drivers and your GPU model, the output may slightly vary. See:
-- Version 1: https://docs.nvidia.com/deploy/nvml-api/structnvmlMemory__t.html
-- Version 2: https://docs.nvidia.com/deploy/nvml-api/structnvmlMemory__v2__t.html
 
 |Value|Description|
 |-----|-----------|
 |`free`|Unallocated device memory|
 |`total`|Total physical device memory|
 |`used`|Allocated device memory|
-|`reserved`|Device memory (in bytes) reserved for system use (driver or firmware). Only available with recent versions of NVIDIA drivers and recent GPU models.|
+|`reserved`|Device memory (in bytes) reserved for system use (driver or firmware)|
 
 ## Configuration
 
@@ -94,7 +91,7 @@ Since some measurements are calculated from previous polls, these measurements a
 
 ## Note on NVIDIA 'utilization'
 
-When NVIDIA measures 'utilization', they actually mean the percent of time that the resource was sollicited over the last sample of time.
+When NVIDIA measures 'utilization', they actually mean the percent of time that the resource was solicited over the last sample of time.
 
 For example, if *memory utilization* $= 60\%$, then it means that during the last **sample of time** (for instance, the past 1 second), 60% of **that time** ($=600ms$) was spent reading or writing the memory.
 
