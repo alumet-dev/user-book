@@ -12,7 +12,7 @@
 # Tutorials for common use cases
 
 - [Measuring the energy consumption of an AI model training]()
-- [Monitoring an entire system]()
+- [Monitoring an entire system](tutorials/system-monitoring.md)
 
 # Plugins reference
 
