@@ -17,14 +17,14 @@ jobs:
           fetch-depth: 0
       - name: Install mdbook
         run: |
-          tag='v0.4.52'
+          tag='v0.5.3'
           url="https://github.com/rust-lang/mdbook/releases/download/${tag}/mdbook-${tag}-x86_64-unknown-linux-gnu.tar.gz"
           mkdir bin
           curl -sSL "$url" | tar -xz --directory=./bin
           echo "$(pwd)/bin" >> $GITHUB_PATH
       - name: Install mdbook-mermaid
         run: |
-          tag='v0.15.0'
+          tag='v0.17.0'
           url="https://github.com/badboy/mdbook-mermaid/releases/download/${tag}/mdbook-mermaid-${tag}-x86_64-unknown-linux-musl.tar.gz"
           curl -sSL "$url" | tar -xz --directory=./bin
           mdbook-mermaid --version
