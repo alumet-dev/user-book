@@ -10,37 +10,66 @@ There are several ways of installing Alumet, you can use packages such as *.rpm*
 curl -sSL https://raw.githubusercontent.com/alumet-dev/alumet/main/install.sh | bash
 ```
 
-if you don't trust us (and you're right)
-
-```bash
-curl -sSL https://raw.githubusercontent.com/alumet-dev/alumet/main/install.sh -o install.sh
-chmod +x install.sh
-./install.sh
-```
-
 Your password could be asked.
 
-### important files
+See more on [Installing Alumet](../start/install.md) chapter.
+
+### Important files
 
 Once installed, let's take a quick look at the files.
-The configuration file of alumet could be found under:
+The default configuration file of alumet can be found under:
 **/etc/alumet/alumet-config.toml**, you could add all needed plugins and their configuration.
 
-On installation, Alumet add a systemd service.
-![systemd service of Alumet](../images/alumet-systemd-service.png)
+## Prepare the Configuration
 
-As you can see, the service is not enabled and not running. So Alumet is not running for now.
-
-## Prepare the configuration
-
-For now, we want to monitor our system, so let's focus on basic plugin
+In this tutorial, we will monitor our system. So let's focus on the following plugins:
 - Input plugins
   - RAPL
   - Procfs (system)
 - Output plugins
   - CSV
 
-According to the above list, here is the associated configuration file for Alumet. You can add the following content to a file: **./alumet-config. toml**.
+### RAPL
+
+This plugin collects measurements of processor energy usage. Also know as `Running average power limit`, follow the link to learn more on [RAPL](https://en.wikipedia.org/wiki/Perf_(Linux)#RAPL).
+More information about the plugin on [RAPL plugin's README](https://github.com/alumet-dev/alumet/blob/main/plugins/rapl/README.md)
+
+### Procfs
+
+This plugin collects processes and system-related metrics on Linux based operating systems. Follow the link to learn more on [Procfs](https://en.wikipedia.org/wiki/Procfs).
+More information about the plugin on [Procf plugin's README](https://github.com/alumet-dev/alumet/blob/main/plugins/procfs/README.md)
+
+### CSV
+
+This plugin writes the measurements sent to Alumet in [CSV format](https://en.wikipedia.org/wiki/Comma-separated_values).
+More information about the plugin on [CSV plugin's README](https://github.com/alumet-dev/alumet/blob/main/plugins/csv/README.md)
+
+### The configuration
+
+Alumet comes with a command to (re)generate the configuration. Let's do this for the used plugins defining the needed configuration using:
+
+```bash
+alumet-agent --plugins rapl,procfs,csv --config my_config.toml config regen
+```
+
+![Alumet config regen](./system-monitoring_images/config-regen.png)
+
+If you want, you can disable some plugin, going under the config file and replacing (or adding):
+**enabled = false** wherever you want to disable the plugin.
+Like this:
+
+```toml
+[plugins.rapl]
+enabled = false
+poll_interval = "1s"
+flush_interval = "5s"
+no_perf_events  = false
+```
+
+Also, you can use the following configuration for an easy-start Alumet monitoring.
+
+<details>
+<summary>Show more</summary>
 
 ```toml
 [plugins.rapl]
@@ -95,37 +124,27 @@ csv_delimiter = ";"
 csv_late_delimiter = ","
 ```
 
+</details>
+
+Learn more about configuration file on the [Configuration file](../start/config.md) chapter.
+
 ## Run Alumet
 
-Once your configuration is done, it's time to run Alumet. Several ways appears. We can use the systemd to make the measurements in background, and so use:
-to start Alumet
+Once your configuration is done, it's time to run Alumet.
+
+To start Alumet with previously generated configuration file, use
 
 ```bash
-sudo systemctl start alumet.service
+alumet-agent --config my_config.toml
 ```
-
-and to stop measurements
-
-```bash
-sudo systemctl stop alumet.service
-```
-
-But here, for more demonstrative try, I will directly launch it through CLI.
-To start Alumet on this way, use
-
-```bash
-alumet-agent --config ./alumet-config.toml
-```
-
-Please not that I used the flag **config** with the path of previously defined Alumet config to use it.
 
 On my side, here is the launch of Alumet.
 
-![Alumet started](../images/alumet-start.png)
+![Alumet started](./system-monitoring_images/alumet-start.png)
 
 to
 
-![Alumet started](../images/alumet-start2.png)
+![Alumet started](./system-monitoring_images/alumet-start2.png)
 
 Here you can see that I enabled 3 plugins, 2 were input one and 1 is output.
 
@@ -133,5 +152,11 @@ Hit `ctrl+c` to stop Alumet and the measures.
 
 ## Look for the results
 
-Once Alumet is stop, you can have a look to the created file in current repository: **alumet-output.csv**. The name and path was defined in the configuration file. You can search for **output_path** parameter in the **alumet-config.toml** of the current directory.
+Once Alumet is stopped, you can have a look to the created file in current directory: **alumet-output.csv**. The name and path were defined in the configuration file. You can search for **output_path** parameter in the **alumet-config.toml** of the current directory.
 And so you have your csv file containing all retrieved measures. You can freely use whatever you want to read this csv, basic file editor will be able to open it, but some will let you sort, filter,... contained lines.
+
+## Learn more
+
+CSV is a very simple output but it could not be adapted for larger data gathering. You could look at the [Influxdb plugins](../plugins/3_outputs/influxdb.md) for a better adapted plugin.
+
+And for a deeper tutorial, please have a look at the Deeper system monitoring with Alumet chapter (Upcoming one), which show more options for monitoring your system.
