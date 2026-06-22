@@ -13,6 +13,7 @@
 
 - [Measuring the energy consumption of an AI model training]()
 - [Monitoring an entire system](tutorials/system-monitoring.md)
+- [Deeper monitoring of an entire system](tutorials/deeper-system-monitoring-tutorial.md)
 
 # Plugins reference
 
