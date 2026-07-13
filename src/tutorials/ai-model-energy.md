@@ -2,7 +2,7 @@
 
 This page explains how to monitor an AI model deployed locally during training and inference.
 
-This provides plugin configuration examples. Depending on your hardware, the required plugins may slightly vary. Refer the page of each plugin to find the corresponding configuration to put in `alumet-config.toml`.
+This provides plugin configuration examples. Depending on your hardware, the required plugins may slightly vary. Refer to the page of each plugin to find the corresponding configuration to put in `alumet-config.toml`. The framework used to deploy the model (vLLM, Ollama ...) does not impact the configuration.
 
 The 3 key components in an AI workflow that need monitoring are the **CPU**, the **RAM** and the **GPU** (if you have one).
 
@@ -11,11 +11,13 @@ The 3 key components in an AI workflow that need monitoring are the **CPU**, the
 For the **CPU** and **RAM**, you should enable the plugin `RAPL` if it is supported. \
 If not supported, you should use `EnergyEstimationTdpPlugin`, which estimates the energy consumption of your processor based on its TDP (Thermal Design Power).
 
-For the **GPU**, you should enable either the plugin **NVML** for NVIDIA GPUs or **AMD-GPU** for AMD GPUs.
+For the **GPU**, you should enable either the plugin `NVML` for NVIDIA GPUs or `AMD-GPU` for AMD GPUs.
 
 ## Component usage
 
-If you want to monitor each component's usage, it is also possible !
+If you want to monitor each component's usage, it is also possible!
+
+### CPU and RAM
 
 For the **CPU** and **RAM**, the required plugin will vary depending on the environment:
 
@@ -24,6 +26,8 @@ For the **CPU** and **RAM**, the required plugin will vary depending on the envi
 * For Grid'5000 clusters, you should use `Kwollect-input` plugin
 
 The relevant metrics are `cpu_time_delta`, `cpu_percent` for CPU usage and `memory_usage` for RAM usage.
+
+### GPU
 
 For the **GPU**, `AMD` and `NVML` already provide different utilization metrics. \
 There are different usage metrics corresponding to different parts of the GPU:
@@ -39,7 +43,14 @@ There are different usage metrics corresponding to different parts of the GPU:
 
 Here are a few example of scenarios, and the corresponding Alumet plugins configuration:
 
-**Scenario 1:**
+| Component | GPU plugin | CPU plugin | Infra plugin |
+| - | - | - | - |
+| Scenario #1 | `NVML` | `RAPL` | `K8s` |
+| Scenario #2 | `AMD` | `RAPL` | `Cgroups` |
+| Scenario #3 | `AMD` | `EnergyEstimationTdpPlugin` | `Slurm` |
+
+### Scenario 1: x86 CPU + NVIDIA GPU + K8S
+
 * GPU: any NVIDIA GPU
 * CPU : any RAPL compatible CPU
 * Infra : Kubernetes
@@ -69,7 +80,7 @@ mode = "full"
 
 </details>
 
-**Scenario 2:**
+### Scenario 2: x86 CPU + AMD GPU
 
 * GPU: any AMD GPU
 * CPU : any RAPL compatible CPU
@@ -95,7 +106,8 @@ skip_failed_devices = true
 
 </details>
 
-**Scenario 3:**
+### Scenario 3: other CPU + AMD GPU + Slurm
+
 * GPU: any AMD GPU
 * CPU : not RAPL compatible CPU
 * Infra : Slurm
@@ -111,10 +123,11 @@ jobs_monitoring_level = "job"
 add_source_in_pause_state = false
 annotate_foreign_measurements = false
 
-[plugins.rapl]
-poll_interval = "1s"
-flush_interval = "5s"
-no_perf_events = false
+[plugins.EnergyEstimationTdpPlugin]
+poll_interval = "30s"
+tdp = 100.0
+nb_vcpu = 1.0
+nb_cpu = 1.0
 
 [plugins.amd-gpu]
 poll_interval = "1s"
@@ -123,9 +136,3 @@ skip_failed_devices = true
 ```
 
 </details>
-
-| Component | GPU plugin | CPU plugin | Infra plugin |
-| - | - | - | - |
-| Scenario #1 | `NVML` | `RAPL` | `K8s` |
-| Scenario #2 | `AMD` | `RAPL` | `Cgroups` |
-| Scenario #3 | `AMD` | `RAPL` | `Slurm` |
