@@ -20,8 +20,6 @@ host = "0.0.0.0"
 prefix = ""
 suffix = "_alumet"
 port = 9091
-append_unit_to_metric_name = true
-use_unit_display_name = true
 add_attributes_to_labels = true
 ```
 
