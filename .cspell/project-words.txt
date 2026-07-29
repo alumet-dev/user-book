@@ -9,6 +9,7 @@ libc
 mdbook
 milli
 nvml
+Ollama
 pagetoc
 powercap
 powermeters
