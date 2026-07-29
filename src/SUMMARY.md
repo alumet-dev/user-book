@@ -11,7 +11,7 @@
 
 # Tutorials for common use cases
 
-- [Measuring the energy consumption of an AI model training]()
+- [Measuring the energy consumption of an AI model during training & inference](tutorials/ai-model-energy.md)
 - [Monitoring an entire system]()
 
 # Plugins reference
