@@ -8,10 +8,10 @@ The 3 key components in an AI workflow that need monitoring are the **CPU**, the
 
 ## Energy consumption
 
-For the **CPU** and **RAM**, you should enable the plugin `RAPL` if it is supported. \
-If not supported, you should use `EnergyEstimationTdpPlugin`, which estimates the energy consumption of your processor based on its TDP (Thermal Design Power).
+For the **CPU** and **RAM**, you should enable the `rapl` plugin if it is supported. \
+If not supported, you should use `energy-estimation-tdp`, which estimates the energy consumption of your processor based on its TDP (Thermal Design Power).
 
-For the **GPU**, you should enable either the plugin `NVML` for NVIDIA GPUs or `AMD-GPU` for AMD GPUs.
+For the **GPU**, you should enable either the `nvml` plugin for NVIDIA GPUs or `amd-gpu` for AMD GPUs.
 
 ## Component usage
 
@@ -21,7 +21,7 @@ If you want to monitor each component's usage, it is also possible!
 
 For the **CPU** and **RAM**, the required plugin will vary depending on the environment:
 
-* If the code runs inside a Kubernetes pod, a OAR or a Slurm job, you should enable respecively the `K8S`, `OAR` or `Slurm` plugin.
+* If the code runs inside a Kubernetes pod, a OAR or a Slurm job, you should enable respecively the `k8s`, `oar` or `slurm` plugin.
 * For bare metal training & inference (as in : the code runs directly on your machine), you should enable the `cgroups` plugin.
 * For Grid'5000 clusters, you should use `Kwollect-input` plugin
 
@@ -29,10 +29,10 @@ The relevant metrics are `cpu_time_delta`, `cpu_percent` for CPU usage and `memo
 
 ### GPU
 
-For the **GPU**, `AMD` and `NVML` already provide different utilization metrics. \
+For the **GPU**, `amd-gpu` and `nvml` already provide different utilization metrics. \
 There are different usage metrics corresponding to different parts of the GPU:
 
-| Metric | Name (`NVML`) | Name (`AMD`) |
+| Metric | Name (`nvml`) | Name (`amd-gpu`) |
 | - | - | - |
 | GPU usage | `nvml_gpu_utilization` | `amd_gpu_activity_usage` (attribute "graphic_core") |
 | SM (= compute units) usage | `nvml_sm_utilization` | `amd_gpu_process_compute_unit_occupancy` |
@@ -45,9 +45,9 @@ Here are a few example of scenarios, and the corresponding Alumet plugins config
 
 | Component | GPU plugin | CPU plugin | Infra plugin |
 | - | - | - | - |
-| Scenario #1 | `NVML` | `RAPL` | `K8s` |
-| Scenario #2 | `AMD` | `RAPL` | `Cgroups` |
-| Scenario #3 | `AMD` | `EnergyEstimationTdpPlugin` | `Slurm` |
+| Scenario #1 | `nvml` | `rapl` | `k8s` |
+| Scenario #2 | `amd-gpu` | `rapl` | `cgroups` |
+| Scenario #3 | `amd-gpu` | `energy-estimation-tdp` | `slurm` |
 
 ### Scenario 1: x86 CPU + NVIDIA GPU + K8S
 
@@ -123,7 +123,7 @@ jobs_monitoring_level = "job"
 add_source_in_pause_state = false
 annotate_foreign_measurements = false
 
-[plugins.EnergyEstimationTdpPlugin]
+[plugins.energy-estimation-tdp]
 poll_interval = "30s"
 tdp = 100.0
 nb_vcpu = 1.0
