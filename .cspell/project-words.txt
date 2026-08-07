@@ -15,6 +15,7 @@ powercap
 powermeters
 rapl
 RAPL
+regen
 rustup
 SCPI
 slurm
